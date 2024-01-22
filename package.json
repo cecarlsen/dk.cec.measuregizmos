@@ -1,0 +1,20 @@
+{
+  "name": "dk.cec.measuregizmo",
+  "version": "0.0.2",
+  "displayName": "Measure Gizmos",
+  "description": "A bunch of MonoBehaviours with gizmo displays for measureing various things in a scene.",
+  "author": {
+    "name": "Carl Emil Carlsen",
+    "email": "public@cec.dk",
+    "url": "https://cec.dk"
+  },
+  "unity": "2023.2",
+  "type": "code",
+  "samples": [
+    {
+      "displayName": "Samples",
+      "description": "All samples.",
+      "path": "Samples~"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+    "name": "MeasureGizmosEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b3e256fdd745f84468244ac72e0dd148"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
