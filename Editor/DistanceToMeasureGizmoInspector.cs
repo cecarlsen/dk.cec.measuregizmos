@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright © Carl Emil Carlsen 2020
+	Copyright © Carl Emil Carlsen 2020-2024
 	http://cec.dk
 */
 
@@ -10,14 +10,16 @@ namespace MeasureGizmos
 	[CustomEditor( typeof( DistanceToMeasureGizmo ) )]
 	public class DistanceToMeasureGizmoInspector : MeasureGizmoInspector
 	{
-		SerializedProperty _targetTransform;
+		SerializedProperty _targetTransformAProp;
+		SerializedProperty _targetTransformBProp;
 
 
 		protected override void OnEnable()
 		{
 			base.OnEnable();
 
-			_targetTransform = serializedObject.FindProperty( "_targetTransform" );
+			_targetTransformAProp = serializedObject.FindProperty( "_targetTransformA" );
+			_targetTransformBProp = serializedObject.FindProperty( "_targetTransformB" );
 		}
 
 
@@ -26,7 +28,8 @@ namespace MeasureGizmos
 			serializedObject.Update();
 
 			BasePropertyFields();
-			EditorGUILayout.PropertyField( _targetTransform );
+			EditorGUILayout.PropertyField( _targetTransformAProp );
+			EditorGUILayout.PropertyField( _targetTransformBProp );
 
 			serializedObject.ApplyModifiedProperties();
 		}
