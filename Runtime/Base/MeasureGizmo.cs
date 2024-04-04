@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright © Carl Emil Carlsen 2020
+	Copyright © Carl Emil Carlsen 2020-2024
 	http://cec.dk
 */
 
@@ -46,6 +46,14 @@ namespace MeasureGizmos
 					return Mathf.RoundToInt( value * 1000 ).ToString() + "mm";
 			}
 			return string.Empty;
+		}
+
+
+		protected static void DrawLabel( Vector3 position, string text )
+		{
+#if UNITY_EDITOR
+			UnityEditor.Handles.Label( position, text );
+#endif
 		}
 	}
 }

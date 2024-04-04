@@ -12,6 +12,7 @@ namespace MeasureGizmos
 	{
 		CameraOntoPlaneMeasureGizmo _gizmo;
 
+		SerializedProperty _camera;
 		SerializedProperty _planeTransform;
 		SerializedProperty _showCenter;
 		SerializedProperty _showPixels;
@@ -23,9 +24,10 @@ namespace MeasureGizmos
 
 			_gizmo = target as CameraOntoPlaneMeasureGizmo;
 
-			_planeTransform = serializedObject.FindProperty( "_planeTransform" );
-			_showCenter = serializedObject.FindProperty( "_showCenter" );
-			_showPixels = serializedObject.FindProperty( "_showPixels" );
+			_camera = serializedObject.FindProperty( nameof( _camera ) );
+			_planeTransform = serializedObject.FindProperty( nameof( _planeTransform ) );
+			_showCenter = serializedObject.FindProperty( nameof( _showCenter ) );
+			_showPixels = serializedObject.FindProperty( nameof( _showPixels ) );
 		}
 
 
@@ -34,6 +36,7 @@ namespace MeasureGizmos
 			serializedObject.Update();
 
 			BasePropertyFields();
+			EditorGUILayout.PropertyField( _camera );
 			EditorGUILayout.PropertyField( _planeTransform );
 			EditorGUILayout.PropertyField( _showCenter );
 			EditorGUILayout.PropertyField( _showPixels );

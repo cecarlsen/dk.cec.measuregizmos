@@ -1,25 +1,20 @@
 ﻿/*
-	Copyright © Carl Emil Carlsen 2020
+	Copyright © Carl Emil Carlsen 2020-2024
 	http://cec.dk
 */
 
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
 namespace MeasureGizmos
 {
 	[ExecuteInEditMode]
-	[RequireComponent(typeof(Camera))]
 	public class CameraOntoPlaneMeasureGizmo : MeasureGizmo
 	{
+		[SerializeField] Camera _camera;
 		[SerializeField] Transform _planeTransform = null;
 		[SerializeField] bool _showCenter = false;
 		[SerializeField] bool _showPixels = false;
 
-		Camera _camera;
 		Vector3[] _hitPoints = new Vector3[ 4 ];
 
 		static readonly Vector3[] viewportCorners = new Vector3[] { Vector3.zero, Vector3.up, Vector3.one, Vector3.right };
@@ -46,7 +41,7 @@ namespace MeasureGizmos
 
 		protected override void Awake()
 		{
-			_camera = GetComponent<Camera>();
+			if( !_camera ) _camera = GetComponent<Camera>();
 			base.Awake();
 		}
 
@@ -67,6 +62,8 @@ namespace MeasureGizmos
 
 		protected override void Draw()
 		{
+			if( !_camera ) _camera = GetComponent<Camera>();
+
 			if( !_camera || !_planeTransform ) return;
 
 			Gizmos.color = _color;
@@ -97,17 +94,14 @@ namespace MeasureGizmos
 				}
 			}
 
-
-#if UNITY_EDITOR
-			Handles.Label( centerLeftHitPoint, "h: " + MeasureToString( leftHeight ) );
-			Handles.Label( centerRightHitPoint, "h: " + MeasureToString( rightHeight ) );
-			Handles.Label( centerTopHitPoint, "w: " + MeasureToString( topWidth ) );
-			Handles.Label( centerBottomHitPoint, "w: " + MeasureToString( bottomWidth ) );
+			DrawLabel( centerLeftHitPoint, "h: " + MeasureToString( leftHeight ) );
+			DrawLabel( centerRightHitPoint, "h: " + MeasureToString( rightHeight ) );
+			DrawLabel( centerTopHitPoint, "w: " + MeasureToString( topWidth ) );
+			DrawLabel( centerBottomHitPoint, "w: " + MeasureToString( bottomWidth ) );
 
 			if( _showCenter ) {
-				Handles.Label( centerHitPoint, "w: " + MeasureToString( centerWidth ) + ", h: " + MeasureToString( centerHeight ) );
+				DrawLabel( centerHitPoint, "w: " + MeasureToString( centerWidth ) + ", h: " + MeasureToString( centerHeight ) );
 			}
-#endif
 		}
 	}
 }

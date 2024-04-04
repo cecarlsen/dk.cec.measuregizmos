@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright © Carl Emil Carlsen 2020
+	Copyright © Carl Emil Carlsen 2020-2024
 	http://cec.dk
 */
 
@@ -18,10 +18,10 @@ namespace MeasureGizmos
 
 		protected virtual void OnEnable()
 		{
-			_destroyInPlayer = serializedObject.FindProperty( "_destroyInPlayer" );
-			_displayAlways = serializedObject.FindProperty( "_displayAlways" );
-			_metricUnit = serializedObject.FindProperty( "_metricUnit" );
-			_color = serializedObject.FindProperty( "_color" );
+			_destroyInPlayer = serializedObject.FindProperty( nameof( _destroyInPlayer ) );
+			_displayAlways = serializedObject.FindProperty( nameof( _displayAlways ) );
+			_metricUnit = serializedObject.FindProperty( nameof( _metricUnit ) );
+			_color = serializedObject.FindProperty( nameof( _color ) );
 		}
 
 
@@ -31,6 +31,8 @@ namespace MeasureGizmos
 			EditorGUILayout.PropertyField( _displayAlways );
 			EditorGUILayout.PropertyField( _metricUnit );
 			EditorGUILayout.PropertyField( _color );
+
+			EditorGUILayout.Space();
 		}
 	}
 }
