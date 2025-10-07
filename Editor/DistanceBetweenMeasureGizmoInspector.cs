@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright © Carl Emil Carlsen 2020-2024
+	Copyright © Carl Emil Carlsen 2020-2025
 	http://cec.dk
 */
 
@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace MeasureGizmos
 {
-	[CustomEditor( typeof( DistanceBetweenMeasureGizmo ) )]
+	[CustomEditor( typeof( DistanceBetweenMeasureGizmo ) ), CanEditMultipleObjects]
 	public class DistanceBetweenMeasureGizmoInspector : MeasureGizmoInspector
 	{
 		SerializedProperty _targetTransformA;
