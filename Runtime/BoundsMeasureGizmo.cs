@@ -28,10 +28,9 @@ namespace MeasureGizmos
 
 		Bounds ComputeBounds()
 		{
-			Bounds bounds = new Bounds();
 			Renderer[] renderers = GetComponentsInChildren<Renderer>();
 			if( renderers.Length == 0 ) return new Bounds();
-			bounds = new Bounds( renderers[ 0 ].bounds.center, Vector3.zero );
+			Bounds bounds = new Bounds( renderers[ 0 ].bounds.center, Vector3.zero );
 			foreach( Renderer render in renderers ) bounds.Encapsulate( render.bounds );
 			return bounds;
 		}
