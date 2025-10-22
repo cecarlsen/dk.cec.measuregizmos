@@ -4,6 +4,8 @@
 */
 
 using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace MeasureGizmos
 {
@@ -11,19 +13,13 @@ namespace MeasureGizmos
 	public class BoundsMeasureGizmoInspector : MeasureGizmoInspector
 	{
 
-		protected override void OnEnable()
+		public override VisualElement CreateInspectorGUI()
 		{
-			base.OnEnable();
-		}
+			VisualElement root = new VisualElement();
+					
+			InspectorElement.FillDefaultInspector( root, serializedObject, this);
 
-
-		public override void OnInspectorGUI()
-		{
-			serializedObject.Update();
-
-			BasePropertyFields();
-
-			serializedObject.ApplyModifiedProperties();
+			return root;
 		}
 	}
 }
