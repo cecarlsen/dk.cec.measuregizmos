@@ -24,13 +24,15 @@ namespace MeasureGizmos
 			if( bounds.size == Vector3.zero ) return;
 
 			Gizmos.matrix = _parentTransform ? _parentTransform.localToWorldMatrix : transform.localToWorldMatrix;
-
 			Gizmos.color = _color;
 			Gizmos.DrawWireCube( bounds.center, bounds.size );
 
-			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.right * bounds.extents.x ) ), "w: " + MeasureToString( bounds.size.x ) );
-			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.up * bounds.extents.y ) ), "h: " + MeasureToString( bounds.size.y ) );
-			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.forward * bounds.extents.z ) ), "d: " + MeasureToString( bounds.size.z ) );
+			Vector3 size = bounds.size;
+			size.Scale( _parentTransform.lossyScale );
+
+			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.right * bounds.extents.x ) ), "w: " + MeasureToString( size.x ) );
+			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.up * bounds.extents.y ) ), "h: " + MeasureToString( size.y ) );
+			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.forward * bounds.extents.z ) ), "d: " + MeasureToString( size.z ) );
 		}
 
 
