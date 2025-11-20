@@ -13,6 +13,12 @@ namespace MeasureGizmos
 	{
 		[SerializeField] Transform _parentTransform;
 		[SerializeField] bool _drawChildBounds = true;
+		[SerializeField] bool _drawX = true;
+		[SerializeField] bool _drawY = true;
+		[SerializeField] bool _drawZ = true;
+		[SerializeField,Range(0f,1f)] float _labelXOffset = 0.5f;
+		[SerializeField,Range(0f,1f)] float _labelYOffset = 0.5f;
+		[SerializeField,Range(0f,1f)] float _labelZOffset = 0.5f;
 
 		List<MeshFilter> _meshFilters = new List<MeshFilter>();
 		Vector3[] _corners = new Vector3[8];
@@ -30,9 +36,9 @@ namespace MeasureGizmos
 			Vector3 size = bounds.size;
 			size.Scale( _parentTransform.lossyScale );
 
-			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.right * bounds.extents.x ) ), "w: " + MeasureToString( size.x ) );
-			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.up * bounds.extents.y ) ), "h: " + MeasureToString( size.y ) );
-			DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.forward * bounds.extents.z ) ), "d: " + MeasureToString( size.z ) );
+			if( _drawX ) DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.right * bounds.size.x * _labelXOffset ) ), "w: " + MeasureToString( size.x ) );
+			if( _drawY ) DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.up * bounds.size.y * _labelXOffset ) ), "h: " + MeasureToString( size.y ) );
+			if( _drawZ ) DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.forward * bounds.size.z * _labelXOffset ) ), "d: " + MeasureToString( size.z ) );
 		}
 
 
