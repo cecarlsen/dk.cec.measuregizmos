@@ -26,13 +26,13 @@ namespace MeasureGizmos
 
 		void OnDrawGizmosSelected()
 		{
-			if( !_displayAlways ) Draw();
+			if( enabled && !_displayAlways ) Draw();
 		}
 
 
 		void OnDrawGizmos()
 		{
-			if( _displayAlways ) Draw();
+			if( enabled && _displayAlways ) Draw();
 		}
 
 
