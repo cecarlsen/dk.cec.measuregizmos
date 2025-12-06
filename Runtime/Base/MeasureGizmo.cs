@@ -1,5 +1,5 @@
 ﻿/*
-	Copyright © Carl Emil Carlsen 2020-2024
+	Copyright © Carl Emil Carlsen 2020-2025
 	http://cec.dk
 */
 
@@ -7,33 +7,10 @@ using UnityEngine;
 
 namespace MeasureGizmos
 {
-	public abstract class MeasureGizmo : MonoBehaviour
+	public abstract class MeasureGizmo : BaseGizmo
 	{
-		[SerializeField] protected bool _destroyInPlayer = true;
-		[SerializeField] protected bool _displayAlways = true;
 		[SerializeField] protected MetricUnit _metricUnit = MetricUnit.Meters;
 		[SerializeField] protected Color _color = Color.yellow;
-
-
-		protected abstract void Draw();
-
-
-		protected virtual void Awake()
-		{
-			if( !Application.isEditor && _destroyInPlayer ) Destroy( this );
-		}
-
-
-		void OnDrawGizmosSelected()
-		{
-			if( enabled && !_displayAlways ) Draw();
-		}
-
-
-		void OnDrawGizmos()
-		{
-			if( enabled && _displayAlways ) Draw();
-		}
 
 
 		protected string MeasureToString( float value )
@@ -46,14 +23,6 @@ namespace MeasureGizmos
 					return Mathf.RoundToInt( value * 1000 ).ToString() + "mm";
 			}
 			return string.Empty;
-		}
-
-
-		protected static void DrawLabel( Vector3 position, string text )
-		{
-#if UNITY_EDITOR
-			UnityEditor.Handles.Label( position, text );
-#endif
 		}
 	}
 }

@@ -8,13 +8,12 @@ using UnityEngine;
 namespace MeasureGizmos
 {
 	[ExecuteInEditMode]
-	public class LabelGizmo : MeasureGizmo
+	public class LabelGizmo : BaseGizmo
 	{
 		[SerializeField] string _text = string.Empty;
 		[SerializeField] Vector3 _offsetLocal = Vector3.zero;
 		[SerializeField] Vector3 _offsetWorld = Vector3.zero;
-
-
+		
 
 		protected override void Draw()
 		{

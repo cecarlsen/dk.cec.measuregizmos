@@ -34,7 +34,7 @@ namespace MeasureGizmos
 			Gizmos.DrawWireCube( bounds.center, bounds.size );
 
 			Vector3 size = bounds.size;
-			size.Scale( _parentTransform.lossyScale );
+			if( _parentTransform ) size.Scale( _parentTransform.lossyScale );
 
 			if( _drawX ) DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.right * bounds.size.x * _labelXOffset ) ), "w: " + MeasureToString( size.x ) );
 			if( _drawY ) DrawLabel( Gizmos.matrix.MultiplyPoint3x4( bounds.min + ( Vector3.up * bounds.size.y * _labelXOffset ) ), "h: " + MeasureToString( size.y ) );
@@ -49,7 +49,7 @@ namespace MeasureGizmos
 			for( int i = _meshFilters.Count - 1; i >= 0; i-- ){
 				if( !_meshFilters[i].gameObject.activeInHierarchy || !_meshFilters[i].sharedMesh ) _meshFilters.RemoveAt( i );
 			}
-			if( _meshFilters.Count == 0 ) return new Bounds();
+			if( _meshFilters.Count == 0 ) return new Bounds( transform.position, transform.localScale );
 
 			if( _drawChildBounds ) Gizmos.color = new Color( _color.r, _color.g, _color.b, _color.a * 0.25f );
 			bool first = true;
