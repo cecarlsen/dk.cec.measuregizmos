@@ -13,13 +13,19 @@ namespace MeasureGizmos
 		[SerializeField] string _text = string.Empty;
 		[SerializeField] Vector3 _offsetLocal = Vector3.zero;
 		[SerializeField] Vector3 _offsetWorld = Vector3.zero;
+		[SerializeField] Color _lineColor = Color.clear;
 		
 
 		protected override void Draw()
 		{
 			var text = string.IsNullOrEmpty( _text ) ? name : _text;
-			var position = transform.position + transform.rotation * _offsetLocal + _offsetWorld;
-			DrawLabel( position, text );
+			var labelPosition = transform.position + transform.rotation * _offsetLocal + _offsetWorld;
+			DrawLabel( labelPosition, text );
+
+			if( _lineColor.a > 0f ){
+				Gizmos.color = _lineColor;
+				Gizmos.DrawLine( transform.position, labelPosition );
+			}
 		}
 	}
 }
