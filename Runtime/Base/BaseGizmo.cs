@@ -13,6 +13,7 @@ namespace MeasureGizmos
 		[SerializeField] protected bool _displayAlways = true;
 
 
+
 		protected abstract void Draw();
 
 
@@ -31,6 +32,17 @@ namespace MeasureGizmos
 		void OnDrawGizmos()
 		{
 			if( enabled && _displayAlways ) Draw();
+		}
+
+
+		protected static void DrawLabel( Vector3 position, string text, Color color, int size = 12 )
+		{
+#if UNITY_EDITOR
+			GUIStyle style = new GUIStyle();
+			style.normal.textColor = color;
+			style.fontSize = size;
+			UnityEditor.Handles.Label( position, text, style );
+#endif
 		}
 
 
